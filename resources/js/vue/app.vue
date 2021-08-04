@@ -2,7 +2,7 @@
   <div class="todoListContainer">
     <div class="heading">
       <h2 id="title">Todo List</h2>
-      <add-item-form />
+      <add-item-form v-on:reloadlist="getList()" />
     </div>
     <list-view
       :items="items"
@@ -27,7 +27,7 @@ export default {
   methods: {
     getList () {
       axios.get('api/items').then( response => {
-        this.item = response.data
+        this.items = response.data
       }).catch( error => {
         console.log(error);
       });
